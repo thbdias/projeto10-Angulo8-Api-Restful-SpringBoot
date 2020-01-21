@@ -3,12 +3,14 @@
         <th scope="col">ID</th>
         <th scope="col">Login</th>
         <th scope="col">Nome</th>
+        <th scope="col">Excluir</th>
     </thead>
     <tbody>
         <tr *ngFor="let student of students">   
             <td>{{student.id}}</td>
             <td>{{student.login}}</td>
-            <td>{{student.nome}}</td>         
+            <td>{{student.nome}}</td>  
+            <td><button (click)="deleteUsuario(student.id)" class="btn btn-primary">Delete</button></td>       
         </tr>
     </tbody>
 </table>

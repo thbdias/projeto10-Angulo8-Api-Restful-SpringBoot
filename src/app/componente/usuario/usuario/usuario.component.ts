@@ -20,4 +20,14 @@ students: Observable<User[]>;
     });
   }
 
+  //esse método será chamado da tela e chamará o service que chamará o back
+  deleteUsuario(id: Number){
+    this.usuarioService.deletarUsuario(id).subscribe(data => {
+      console.log("Retorno do método delete: " + data);
+      //atualizar lista de usuários
+      this.usuarioService.getStudentList().subscribe(data => {
+        this.students = data;
+      });
+    });
+  }
 }
