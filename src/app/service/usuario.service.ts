@@ -17,4 +17,9 @@ export class UsuarioService {
   deletarUsuario(id: Number): Observable<any>{
     return this.http.delete(AppConstants.baseUrl + id, {responseType: 'text'}); //delete do back retorna em formato de texto
   }
+
+  // http://localhost:8080/projeto9-SpringBoot-Api-Rest/usuario/usuarioPorNome/maira
+  consultarUsario(nome: String): Observable<any>{
+    return this.http.get(AppConstants.baseUrl + "usuarioPorNome/" + nome);
+  }
 }
