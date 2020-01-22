@@ -5,6 +5,13 @@
         <input type="text" class="form-control" id="nome" name="nome" [(ngModel)]="nome" placeholder="Pesquisa por nome">
     </div>
     <button type="button" (click)="consultarUsuario()" class="btn btn-primary mb-2">Buscar</button>
+    <button type="button" 
+        [routerLink]="['/usuarioAdd']" 
+        routerLinkActive="router-link-active"  
+        class="btn btn-success mb-2"
+        style="margin-left: 5px;">
+        Novo
+    </button>
 </form>
 
 <br /><br />
@@ -15,13 +22,15 @@
         <th scope="col">Login</th>
         <th scope="col">Nome</th>
         <th scope="col">Excluir</th>
+        <th scope="col">Editar</th>
     </thead>
     <tbody>
         <tr *ngFor="let student of students">   
             <td>{{student.id}}</td>
             <td>{{student.login}}</td>
             <td>{{student.nome}}</td>  
-            <td><button (click)="deleteUsuario(student.id)" class="btn btn-primary">Delete</button></td>       
+            <td><button (click)="deleteUsuario(student.id)" class="btn btn-primary">Delete</button></td>
+            <td><button [routerLink]="['/usuarioAdd/', student.id]" routerLinkActive="router-link-active"  class="btn btn-warning">Editar</button></td>
         </tr>
     </tbody>
 </table>
