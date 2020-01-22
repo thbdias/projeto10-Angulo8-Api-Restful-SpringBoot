@@ -26,4 +26,15 @@ export class AppComponent implements OnInit {
     this.router.navigate(['login']);    
   }
 
+  public esconderBarra(){
+    //se tiver logado mostre barra
+    if (localStorage.getItem('token') !== null && 
+        localStorage.getItem('token').toString().trim() !== null){
+      return false;
+    }
+    else{ //se deslogou esconda barra -> tela de login
+      return true;
+    }
+  }
+
 }
