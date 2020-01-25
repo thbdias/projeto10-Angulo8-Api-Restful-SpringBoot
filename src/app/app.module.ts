@@ -12,14 +12,15 @@ import { LoginComponent } from './login/login.component'
 import { HttpInterceptorModule } from './service/header-interceptor.service';
 import { UsuarioComponent } from './componente/usuario/usuario/usuario.component';
 import { UsuarioAddComponent } from './componente/usuario/usuario-add/usuario-add.component';
+import { GuardiaoGuard } from './service/guardiao.guard';
 
 export const appRouters: Routes = [
-  {path: 'home', component: HomeComponent},
+  {path: 'home', component: HomeComponent, canActivate: [GuardiaoGuard]}, //canActivate -> prote rotas
   {path: 'login', component: LoginComponent},
   {path: '', component: LoginComponent},
-  {path: 'usuarioList', component: UsuarioComponent},
-  {path: 'usuarioAdd', component: UsuarioAddComponent},
-  {path: 'usuarioAdd/:id', component: UsuarioAddComponent}
+  {path: 'usuarioList', component: UsuarioComponent, canActivate: [GuardiaoGuard]}, //canActivate -> prote rotas
+  {path: 'usuarioAdd', component: UsuarioAddComponent, canActivate: [GuardiaoGuard]}, //canActivate -> prote rotas
+  {path: 'usuarioAdd/:id', component: UsuarioAddComponent, canActivate: [GuardiaoGuard]} //canActivate -> prote rotas
 ];
 
 export const routes: ModuleWithProviders = RouterModule.forRoot(appRouters); 
