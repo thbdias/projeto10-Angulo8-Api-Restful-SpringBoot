@@ -29,6 +29,36 @@
         </div>
     </div>
 
+
+    <div class="card text-center">
+        <div class="card-header">
+            Telefone Contato
+        </div>
+        <div class="card-body" style="padding-left: 1px;">
+            <div class="form-row">    
+                <div class="form-group col-md-3">
+                    <input type="text" class="form-control">
+                </div>
+                <div class="form-group col-md-2">
+                    <button class="btn btn-primary">Adicionar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <table class="table">
+        <tbody>
+            <tr *ngFor="let fone of usuario.telefones">                
+                <td>{{fone.id}}</td>
+                <td>{{fone.numero}}</td>
+                <td><button class="btn btn-danger">Delete</button></td>
+            </tr>
+        </tbody>
+    </table>
+
+
+
+
     <div class="form-row">
         <div class="form-group col-md-6">
             <button type="button" 
