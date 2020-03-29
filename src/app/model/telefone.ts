@@ -1,6 +1,6 @@
 export class Telefone {
 
-    id: Number; //
+    id: Number; //no back esse campo está como Long
     numero: String;
 
 }
