@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router'
 import { User } from 'src/app/model/user';
 import { UsuarioService } from 'src/app/service/usuario.service';
+import { Telefone } from 'src/app/model/telefone';
 
 @Component({
   selector: 'app-root',
@@ -11,6 +12,7 @@ import { UsuarioService } from 'src/app/service/usuario.service';
 export class UsuarioAddComponent implements OnInit {
 
   usuario = new User();
+  telefone = new Telefone();
 
   constructor(private routeActive: ActivatedRoute, private usuarioService: UsuarioService) { }
 
@@ -44,15 +46,33 @@ export class UsuarioAddComponent implements OnInit {
 
   novo(){
     this.usuario = new User();
+    this.telefone = new Telefone();
   }
 
-  deletarTelefone(id, posicaoTelefone){
+  deletarTelefone(id, posicaoTelefone){    
+    //tiver adicionando novo telefone e ele não existe no banco de dados ainda...
+    if (id == null){
+      this.usuario.telefones.splice(posicaoTelefone, 1); //remove o telefone da lista
+      return;
+    }
+
+    //telefone tem que existir no bando de dados
     if (id !== null && confirm("Deseja remover?")){
       this.usuarioService.removerTelefone(id).subscribe(data => {        
         this.usuario.telefones.splice(posicaoTelefone, 1); //remove o telefone da lista
         console.info("Telefone removido = " + data);
       });
     }
+  }
+
+  addFone(){
+    //se a lista estiver nula...
+    if (this.usuario.telefones === undefined){
+      this.usuario.telefones = new Array<Telefone>();
+    }
+
+    this.usuario.telefones.push(this.telefone);
+    this.telefone = new Telefone();
   }
 
 }
