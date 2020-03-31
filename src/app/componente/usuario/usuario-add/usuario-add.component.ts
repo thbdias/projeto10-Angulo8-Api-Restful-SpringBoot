@@ -42,9 +42,18 @@ export class UsuarioAddComponent implements OnInit {
     }
   }
 
-
   novo(){
     this.usuario = new User();
+  }
+
+  deletarTelefone(id){
+    if (id !== null && confirm("Deseja remover?")){
+      this.usuarioService.removerTelefone(id).subscribe(data => {
+        const index = this.usuario.telefones.indexOf(id); //identifica posicao da lista do telefone removido
+        this.usuario.telefones.splice(index - 1, 1); //remove o telefone da lista
+        console.info("Telefone removido = " + data);
+      });
+    }
   }
 
 }
