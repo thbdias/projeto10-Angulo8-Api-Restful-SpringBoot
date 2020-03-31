@@ -46,11 +46,10 @@ export class UsuarioAddComponent implements OnInit {
     this.usuario = new User();
   }
 
-  deletarTelefone(id){
+  deletarTelefone(id, posicaoTelefone){
     if (id !== null && confirm("Deseja remover?")){
-      this.usuarioService.removerTelefone(id).subscribe(data => {
-        const index = this.usuario.telefones.indexOf(id); //identifica posicao da lista do telefone removido
-        this.usuario.telefones.splice(index - 1, 1); //remove o telefone da lista
+      this.usuarioService.removerTelefone(id).subscribe(data => {        
+        this.usuario.telefones.splice(posicaoTelefone, 1); //remove o telefone da lista
         console.info("Telefone removido = " + data);
       });
     }

@@ -48,10 +48,10 @@
 
     <table class="table">
         <tbody>
-            <tr *ngFor="let fone of usuario.telefones">                
+            <tr *ngFor="let fone of usuario.telefones; let posicaoTelefone = index">                
                 <td>{{fone.id}}</td>
                 <td>{{fone.numero}}</td>
-                <td><button class="btn btn-danger" (click)="deletarTelefone(fone.id)">Delete</button></td>
+                <td><button class="btn btn-danger" (click)="deletarTelefone(fone.id, posicaoTelefone)">Delete</button></td>
             </tr>
         </tbody>
     </table>
