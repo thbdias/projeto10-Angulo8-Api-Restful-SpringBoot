@@ -13,7 +13,8 @@ import { HttpInterceptorModule } from './service/header-interceptor.service';
 import { UsuarioComponent } from './componente/usuario/usuario/usuario.component';
 import { UsuarioAddComponent } from './componente/usuario/usuario-add/usuario-add.component';
 import { GuardiaoGuard } from './service/guardiao.guard';
-import { NgxMaskModule, IConfig} from 'ngx-mask';
+import { NgxMaskModule, IConfig } from 'ngx-mask';
+import { NgxPaginationModule } from 'ngx-pagination'
 
 export const appRouters: Routes = [
   {path: 'home', component: HomeComponent, canActivate: [GuardiaoGuard]}, //canActivate -> prote rotas
@@ -43,7 +44,8 @@ export const optionMask: Partial<IConfig> | (() => Partial<IConfig>) = {};
     HttpClientModule,
     routes,
     HttpInterceptorModule,
-    NgxMaskModule.forRoot(optionMask)
+    NgxMaskModule.forRoot(optionMask),
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]
