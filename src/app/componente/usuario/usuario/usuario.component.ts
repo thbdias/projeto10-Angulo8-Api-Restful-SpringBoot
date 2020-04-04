@@ -33,15 +33,30 @@ export class UsuarioComponent implements OnInit {
   }
 
   consultarUsuario(){
-    this.usuarioService.consultarUsario(this.nome).subscribe(data => {
-      this.students = data;
-    });
+    if (this.nome === ''){
+      this.usuarioService.getStudentList().subscribe(data => {
+        this.students = data.content;
+        this.totalRegistroBanco = data.totalElements;
+      });
+    } else {
+      this.usuarioService.consultarUsario(this.nome).subscribe(data => {
+        this.students = data.content;
+        this.totalRegistroBanco = data.totalElements;
+      });
+    }    
   }
 
   carregarPagina(numPaginaAtual){
-    this.usuarioService.getStudentListPage(numPaginaAtual - 1).subscribe(data => {
-      this.students = data.content;
-      this.totalRegistroBanco = data.totalElements;
-    });
+    if (this.nome !== ''){
+      this.usuarioService.consultarUsarioPorPage(this.nome, (numPaginaAtual - 1)).subscribe(data => {
+        this.students = data.content;
+        this.totalRegistroBanco = data.totalElements;
+      });
+    } else {
+      this.usuarioService.getStudentListPage(numPaginaAtual - 1).subscribe(data => {
+        this.students = data.content;
+        this.totalRegistroBanco = data.totalElements;
+      });
+    }
   }
 }
