@@ -25,11 +25,11 @@
         <th scope="col">Editar</th>
     </thead>
     <tbody>
-        <tr *ngFor="let student of students | paginate:{itemsPerPage:5, currentPage: numPaginaAtual, totalItems : totalRegistroBanco}">   
+        <tr *ngFor="let student of students | paginate:{itemsPerPage:5, currentPage: numPaginaAtual, totalItems : totalRegistroBanco}; let posicaoUsuario : index">   
             <td>{{student.id}}</td>
             <td>{{student.login}}</td>
             <td>{{student.nome}}</td>  
-            <td><button (click)="deleteUsuario(student.id)" class="btn btn-primary">Delete</button></td>
+            <td><button (click)="deleteUsuario(student.id, posicaoUsuario)" class="btn btn-primary">Delete</button></td>
             <td><button [routerLink]="['/usuarioAdd/', student.id]" routerLinkActive="router-link-active"  class="btn btn-warning">Editar</button></td>
         </tr>
     </tbody>

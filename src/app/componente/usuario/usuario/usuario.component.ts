@@ -10,7 +10,7 @@ import { User } from 'src/app/model/user';
 })
 export class UsuarioComponent implements OnInit {
 
-  students: Observable<User[]>;
+  students: Array<User[]>;
   nome: String;
   totalRegistroBanco: Number;
 
@@ -24,14 +24,10 @@ export class UsuarioComponent implements OnInit {
   }
 
   //esse método será chamado da tela e chamará o service que chamará o back
-  deleteUsuario(id: Number){
+  deleteUsuario(id: Number, index){
     if (confirm('Deseja mesmo remover?')){
       this.usuarioService.deletarUsuario(id).subscribe(data => {
-        console.log("Retorno do método delete: " + data);
-        //atualizar lista de usuários
-        this.usuarioService.getStudentList().subscribe(data => {
-          this.students = data;
-        });
+        this.students.splice(index, 1); //remover da tela
       });
     }
   }
