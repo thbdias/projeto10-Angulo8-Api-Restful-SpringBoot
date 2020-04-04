@@ -42,7 +42,10 @@ export class UsuarioComponent implements OnInit {
     });
   }
 
-  carregarPagina(pagina){
-
+  carregarPagina(numPaginaAtual){
+    this.usuarioService.getStudentListPage(numPaginaAtual - 1).subscribe(data => {
+      this.students = data.content;
+      this.totalRegistroBanco = data.totalElements;
+    });
   }
 }

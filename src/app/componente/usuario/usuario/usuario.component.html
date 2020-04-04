@@ -25,7 +25,7 @@
         <th scope="col">Editar</th>
     </thead>
     <tbody>
-        <tr *ngFor="let student of students | paginate:{itemsPerPage:5, currentPage: paginaAtual, totalItems : totalRegistroBanco}">   
+        <tr *ngFor="let student of students | paginate:{itemsPerPage:5, currentPage: numPaginaAtual, totalItems : totalRegistroBanco}">   
             <td>{{student.id}}</td>
             <td>{{student.login}}</td>
             <td>{{student.nome}}</td>  
@@ -36,6 +36,6 @@
 </table>
 
 <div class="text-center">
-    <pagination-controls (pageChange) = "carregarPagina(paginaAtual = $event);" previousLabel = "Voltar" nextLabel = "Avançcar" responsive="true">
+    <pagination-controls (pageChange) = "carregarPagina(numPaginaAtual = $event);" previousLabel = "Voltar" nextLabel = "Avançcar" responsive="true">
     </pagination-controls>
 </div>

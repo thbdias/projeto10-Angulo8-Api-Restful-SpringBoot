@@ -14,6 +14,10 @@ export class UsuarioService {
     return this.http.get<any>(AppConstants.baseUrl);
   }
 
+  getStudentListPage(numPaginaAtual): Observable<any>{
+    return this.http.get<any>(AppConstants.baseUrl + 'page/' + numPaginaAtual);
+  }
+
   getStudent(id): Observable<any>{
     return this.http.get<any>(AppConstants.baseUrl + id);
   }
@@ -48,4 +52,6 @@ export class UsuarioService {
       return false;
     }
   }
+
+
 }
