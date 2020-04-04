@@ -10,14 +10,16 @@ import { User } from 'src/app/model/user';
 })
 export class UsuarioComponent implements OnInit {
 
-students: Observable<User[]>;
-nome: String;
+  students: Observable<User[]>;
+  nome: String;
+  totalRegistroBanco: Number;
 
   constructor(private usuarioService: UsuarioService) { }
 
   ngOnInit() {
     this.usuarioService.getStudentList().subscribe(data => {
-      this.students = data;
+      this.students = data.content;
+      this.totalRegistroBanco = data.totalElements;
     });
   }
 
@@ -38,5 +40,9 @@ nome: String;
     this.usuarioService.consultarUsario(this.nome).subscribe(data => {
       this.students = data;
     });
+  }
+
+  carregarPagina(pagina){
+
   }
 }
