@@ -3,11 +3,32 @@ import { ActivatedRoute } from '@angular/router'
 import { User } from 'src/app/model/user';
 import { UsuarioService } from 'src/app/service/usuario.service';
 import { Telefone } from 'src/app/model/telefone';
-import { NgbDateParserFormatter, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateParserFormatter, NgbDateStruct, NgbDateAdapter } from '@ng-bootstrap/ng-bootstrap';
 
 @Injectable()
-export class FormataData extends NgbDateParserFormatter{
-  
+export class FormatDateAdapter extends NgbDateAdapter<string> {  
+  readonly DELIMITER = '/';
+
+  fromModel(value: string | null): NgbDateStruct | null {
+    if (value){
+      let date = value.split(this.DELIMITER);
+      return {
+        day: parseInt(date[0], 10),
+        month: parseInt(date[1], 10),
+        year: parseInt(date[2], 10)
+      }
+    }
+    return null;
+  }
+
+  toModel(date: NgbDateStruct | null): string | null {
+    return date ? date.day + this.DELIMITER + date.month + this.DELIMITER + date.year : null;
+  }
+
+}
+
+@Injectable()
+export class FormataData extends NgbDateParserFormatter {  
   readonly DELIMITER = '/';
 
   parse(value: string) : NgbDateStruct | null{    
@@ -43,7 +64,8 @@ function validarDiaOuMes(valor) {
   selector: 'app-root',
   templateUrl: './usuario-add.component.html',
   styleUrls: ['./usuario-add.component.scss'],
-  providers: [{provide: NgbDateParserFormatter, useClass: FormataData}]
+  providers: [{provide: NgbDateParserFormatter, useClass: FormataData},
+              {provide: NgbDateAdapter, useClass: FormatDateAdapter}]
 })
 export class UsuarioAddComponent implements OnInit {
 
