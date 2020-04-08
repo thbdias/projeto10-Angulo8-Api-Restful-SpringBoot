@@ -4,6 +4,7 @@ import { User } from 'src/app/model/user';
 import { UsuarioService } from 'src/app/service/usuario.service';
 import { Telefone } from 'src/app/model/telefone';
 import { NgbDateParserFormatter, NgbDateStruct, NgbDateAdapter } from '@ng-bootstrap/ng-bootstrap';
+import { Profissao } from 'src/app/model/profissao';
 
 @Injectable()
 export class FormatDateAdapter extends NgbDateAdapter<string> {  
@@ -71,10 +72,15 @@ export class UsuarioAddComponent implements OnInit {
 
   usuario = new User();
   telefone = new Telefone();
+  profissoes: Array<Profissao>; 
 
   constructor(private routeActive: ActivatedRoute, private usuarioService: UsuarioService) { }
 
   ngOnInit() {
+    this.usuarioService.getProfissaoList().subscribe(data => {
+      this.profissoes = data;      
+    });
+
     //pegando id do param enviado pelo botao editar
     let id = this.routeActive.snapshot.paramMap.get('id'); 
 
@@ -132,5 +138,7 @@ export class UsuarioAddComponent implements OnInit {
     this.usuario.telefones.push(this.telefone);
     this.telefone = new Telefone();
   }
+
+
 
 }

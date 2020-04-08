@@ -40,6 +40,14 @@
                 </div>
             </div>
         </div>
+
+        <div class="form-group col-md-3">
+            <label for="profissao">Profissão</label>
+            <span style="color: red; font-size: 23;" *ngIf="profissaoValidade.invalid"> *</span>
+            <select name="profissao" id="profissao" [(ngModel)]="usuario.profissao.id" #profissaoValidade="ngModel" class="form-control">
+                <option *ngFor="let profissao of profissoes" [ngValue]="profissao.id">{{profissao.descricao}}</option>
+            </select>
+        </div>
     </div>    
 
     <div class="card text-center">
