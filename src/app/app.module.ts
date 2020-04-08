@@ -16,6 +16,7 @@ import { GuardiaoGuard } from './service/guardiao.guard';
 import { NgxMaskModule, IConfig } from 'ngx-mask';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgxCurrencyModule } from 'ngx-currency';
 
 export const appRouters: Routes = [
   {path: 'home', component: HomeComponent, canActivate: [GuardiaoGuard]}, //canActivate -> prote rotas
@@ -47,7 +48,8 @@ export const optionMask: Partial<IConfig> | (() => Partial<IConfig>) = {};
     HttpInterceptorModule,
     NgxMaskModule.forRoot(optionMask),
     NgxPaginationModule,
-    NgbModule
+    NgbModule,
+    NgxCurrencyModule
   ],
   providers: [],
   bootstrap: [AppComponent]

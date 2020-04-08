@@ -12,4 +12,5 @@ export class User {
 
     telefones: Array<Telefone>; //nome variável igual do back
     profissao: Profissao = new Profissao(); //nome variável igual do back
+    salario: DoubleRange; //nome variável igual do back
 }
